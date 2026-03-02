@@ -256,12 +256,12 @@
     <div class="container">
         
         <div id="about" class="main-card active" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-            <img src="assets/me.jpg" onerror="this.src='https://via.placeholder.com/150'" class="profile-pic">
+            <img src="assets/me.jpg" class="profile-pic" alt="Profile">
             <h1>من هو بشير؟</h1>
             <div class="typewriter" style="color: var(--accent-color); margin-bottom: 15px;">
-                طالب في جامعة النهرين - كلية هندسة المعلومات - قسم هندسة الاتمتة والذكاء الاصطناعي  
+                طالب في جامعة النهرين - كلية هندسة المعلومات  
             </div>
-            <p class="answer"> أسعى لبناء انظمة اتمتة ذكية تخدم المستقبل.</p>
+            <p class="answer"> قسم هندسة الاتمتة والذكاء الاصطناعي - أسعى لبناء انظمة اتمتة ذكية تخدم المستقبل.</p>
             <div style="margin-top: 20px; font-size: 2rem;">
                 🤖 ⚡ 🧠
             </div>
@@ -516,7 +516,7 @@
             <button onclick="fetchCertificate()" class="nav-btn active-btn" style="width: 60%; margin: 0 auto; display: block; font-size: 1.1rem;">عرض الشهادة 📥</button>
 
             <div id="certResult" style="margin-top: 30px; display: none; animation: fadeIn 1s;">
-                <div style="color: #4CAF50; margin-bottom: 10px; font-weight: bold;">✅ تم التحقق بنجاح! هذه شهادتك:</div>
+                <div style="color: #4CAF50; margin-bottom: 10px; font-weight: bold;">بنيت مهاراتك بذكاء، والآن حان وقت استلام الدليل.. شهادتك بانتظارك لتبهر الجميع! 🏆</div>
                 
                 <div style="border: 2px solid #00D1FF; border-radius: 15px; overflow: hidden; box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);">
                     <img id="certImage" src="" alt="الشهادة" style="width: 100%; display: block;">
@@ -567,7 +567,7 @@
         if (code === "") return; // إذا الحقل فارغ لا تفعل شيئاً
 
         // مسار الصورة (اسم الملف هو الكود الذي أدخله الطالب)
-        const certPath = `certificates/${code}.jpg`;
+        const certPath = `${code}.jpg`;
 
         // محاولة تحميل الصورة
         img.onload = function() {
@@ -605,12 +605,11 @@
         <button class="nav-btn" onclick="showPage('courses', this)">الدورات</button>
         <button class="nav-btn" onclick="showPage('verify', this)">الشهادات</button>
         <button class="nav-btn" onclick="showPage('python-details', this)">دورة برمجة بايثون</button>
-        <button class="nav-btn" onclick="showPage('compiler', this)">جرب بايثون</button>
         <button class="nav-btn" onclick="showPage('computer-details', this)">دورة اساسيات الحاسوب</button>
         <button class="nav-btn" onclick="showPage('projects', this)">مشاريعي</button>
-        <button class="nav-btn" onclick="startBiometricScan()">🔒Admin</button>
         <button class="nav-btn" onclick="showPage('channels', this)">قنواتي</button>
         <button class="nav-btn" onclick="showPage('help', this)">مساعدة</button>
+        <button class="nav-btn" onclick="startBiometricScan()">🔒Admin</button>
     </nav>
 
     <script>
@@ -667,8 +666,9 @@
 
         // سنحاول تحميل الصورة بصيغة JPG أولاً
         // ملاحظة: تأكد أن مجلد الصور اسمه certificates
+// بدلاً من السطر القديم، أضف اسم المجلد إذا كنت تضع الصور بداخله
         const jpgPath = `certificates/${code}.jpg`;
-        const pngPath = `certificates/${code}.png`; // احتياط اذا كانت الصورة png
+        const pngPath = `certificates/${code}.png`;
 
         // وظيفة مساعدة لتجربة المسار
         function tryLoadImage(path, isLastAttempt) {
@@ -1435,6 +1435,102 @@
                 left: 5%;
             }
         }
+
+        @media screen and (max-width: 600px) {
+        .toast-container {
+            /* ظهور في الأعلى بحجم صغير */
+            top: 0 !important; 
+            left: 0 !important;
+            width: 100% !important;
+            border-radius: 0 !important; /* إلغاء الحواف الدائرية لتلصق بالسقف */
+            padding: 5px 10px !important;
+            transform: translateY(-100%); /* مخفي للأعلى */
+            transition: transform 0.5s ease;
+            bottom: auto !important;
+            border-left: none !important;
+            border-bottom: 2px solid #00D1FF; /* خط أزرق من تحت */
+        }
+
+        .toast-visible {
+            transform: translateY(0) !important; /* ينزل من السقف */
+            left: 0 !important;
+        }
+
+        /* تصغير النص والأيقونة */
+        .toast-icon { width: 30px; height: 30px; font-size: 1.2rem; }
+        .toast-title { font-size: 0.8rem; }
+        .toast-msg { font-size: 0.7rem; }
+    }
+    
+/* =========================================
+       تصميم الموبايل المصغر (Mini Grid)
+       ========================================= */
+    @media screen and (max-width: 600px) {
+        /* إضافة "مقبض" صغير في أعلى القائمة */
+    .nav-bar::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3); /* لون رمادي خفيف */
+        margin: 0 auto 10px auto; /* توسيط ومسافة من الأسفل */
+        border-radius: 10px;
+    }
+        .nav-bar {
+            /* 1. الحجم والتموضع */
+            position: fixed;
+            bottom: 70px; /* نرفعها لتكون فوق العداد بوضوح */
+            left: 50%;
+            /* التريك هنا: نحركها للوسط ثم نصغر حجمها الكلي بنسبة 0.9 */
+            transform: translateX(-50%) scale(0.9) !important; 
+            
+            width: 80%; /* عرض أقل لتكون ملمومة */
+            max-height: 35vh; /* ارتفاع قصير */
+            
+            /* 2. الشبكة */
+            display: grid !important;
+            grid-template-columns: 1fr 1fr; /* عمودين */
+            gap: 6px; /* مسافة صغيرة جداً بين الأزرار */
+            padding: 8px; /* حشوة صغيرة */
+            
+            /* 3. الجماليات */
+            background: rgba(16, 20, 30, 0.95);
+            border: 1px solid rgba(0, 209, 255, 0.5); /* إطار ناعم */
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            z-index: 9990;
+            
+            /* إلغاء الستايل القديم */
+            flex-direction: unset !important;
+            flex-wrap: unset !important;
+            overflow-y: auto;
+        }
+
+        /* تصغير الأزرار والكتابة */
+        .nav-btn {
+            width: 100%;
+            margin: 0 !important;
+            padding: 6px 2px !important; /* زر رشيق */
+            font-size: 0.75rem !important; /* خط ناعم وصغير */
+            height: auto;
+            min-height: 35px; /* ارتفاع ثابت صغير */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* سكرول بار مخفي تقريباً */
+        .nav-bar::-webkit-scrollbar { width: 3px; }
+        .nav-bar::-webkit-scrollbar-thumb { background: #00D1FF; }
+
+        /* ترتيب أزرار الشات والصوت لتبقى بعيدة */
+        #chat-trigger { bottom: 20px !important; left: 20px !important; transform: scale(0.8); }
+        #voice-btn { bottom: 20px !important; left: auto !important; right: 20px !important; transform: scale(0.8); }
+        
+        /* إخفاء الإشعارات في الموبايل أو رفعها للأعلى جداً */
+        .toast-container { top: 10px !important; bottom: auto !important; transform: scale(0.8); left: 2% !important; }
+    }
+    
     </style>
 
     <script>
@@ -1548,7 +1644,162 @@ function showNotification() {
             if(btn) btn.innerText = "☀️";
         }
     })();
+
+    const navBar = document.querySelector('.nav-bar');
+    
+    // متغيرات لحفظ مكان اللمس
+    let isDragging = false;
+    let touchOffsetX = 0;
+    let touchOffsetY = 0;
+
+    // 1. عند وضع الإصبع (بدء اللمس)
+    navBar.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        
+        // حساب المسافة بين مكان الإصبع وحافة القائمة
+        const rect = navBar.getBoundingClientRect();
+        touchOffsetX = touch.clientX - rect.left;
+        touchOffsetY = touch.clientY - rect.top;
+        
+        // تغيير شكل القائمة لتبدو وكأنها "ممسوكة"
+        navBar.style.opacity = "0.8";
+        navBar.style.border = "2px solid #00D1FF";
+    }, { passive: false });
+
+    // 2. عند تحريك الإصبع
+    navBar.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        
+        // منع الشاشة من التحرك (Scroll) أثناء سحب القائمة
+        e.preventDefault(); 
+        
+        const touch = e.touches[0];
+        
+        // حساب الموقع الجديد
+        let newLeft = touch.clientX - touchOffsetX;
+        let newTop = touch.clientY - touchOffsetY;
+
+        // تطبيق الموقع الجديد
+        navBar.style.left = newLeft + 'px';
+        navBar.style.top = newTop + 'px';
+        
+        // ملاحظة مهمة: نلغي التموضع القديم
+        navBar.style.bottom = 'auto'; 
+        navBar.style.transform = 'scale(0.9)'; // نحافظ على التصغير لكن نلغي التوسيط التلقائي
+        
+    }, { passive: false });
+
+    // 3. عند رفع الإصبع (انتهاء اللمس)
+    navBar.addEventListener('touchend', () => {
+        isDragging = false;
+        navBar.style.opacity = "1";
+        navBar.style.border = "1px solid rgba(0, 209, 255, 0.5)"; // إرجاع الحدود لطبيعتها
+    });
+
+    function toggleTheme() {
+        const body = document.body;
+        const btn = document.getElementById('theme-btn');
+        
+        // تبديل الكلاس
+        body.classList.toggle('light-mode');
+
+        // تغيير الأيقونة وحفظ الوضع
+        if (body.classList.contains('light-mode')) {
+            btn.innerText = "🌙"; // تحويل الأيقونة لقمر
+            localStorage.setItem('theme', 'light'); // حفظ الاختيار
+        } else {
+            btn.innerText = "☀️"; // تحويل الأيقونة لشمس
+            localStorage.setItem('theme', 'dark'); // حفظ الاختيار
+        }
+    }
+
+    // فحص الذاكرة عند فتح الموقع لاسترجاع وضع المستخدم
+    (function loadTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('theme-btn').innerText = "🌙";
+        }
+    })();
+
 </script>
 
+<button id="theme-btn" onclick="toggleTheme()">
+        ☀️
+    </button>
+
+    <style>
+        /* تصميم الزر العائم */
+        #theme-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px; /* في أعلى اليسار لكي لا يغطي على القوائم */
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00D1FF;
+            border-radius: 50%;
+            font-size: 25px;
+            cursor: pointer;
+            z-index: 10000; /* فوق كل شيء */
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, background 0.3s;
+            box-shadow: 0 0 15px rgba(0, 209, 255, 0.2);
+        }
+
+        #theme-btn:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: #00D1FF;
+        }
+
+        /* =========================================
+           إعدادات الوضع النهاري (Light Mode)
+           تعمل فقط عند إضافة كلاس .light-mode للجسم
+           ========================================= */
+        
+        body.light-mode {
+            background-color: #f0f2f5 !important; /* خلفية رمادية فاتحة جداً */
+            background-image: none !important; /* إلغاء خلفية الفضاء */
+            color: #1a1a1a !important; /* النص يصبح أسود */
+        }
+
+        /* تحويل البطاقات للأبيض */
+        body.light-mode .main-card, 
+        body.light-mode .nav-bar, 
+        body.light-mode #chat-window,
+        body.light-mode .toast-container {
+            background: #ffffff !important;
+            border-color: #ddd !important;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+            color: #333 !important;
+        }
+
+        /* تعديل النصوص والعناوين */
+        body.light-mode h1, 
+        body.light-mode h2, 
+        body.light-mode strong {
+            color: #005bea !important; /* أزرق داكن */
+        }
+
+        body.light-mode p, 
+        body.light-mode .answer, 
+        body.light-mode li {
+            color: #555 !important;
+        }
+
+        /* تحسين الحقول والأزرار في الوضع الفاتح */
+        body.light-mode input, 
+        body.light-mode textarea {
+            background: #f9f9f9 !important;
+            color: #333 !important;
+            border: 1px solid #ccc !important;
+        }
+
+        /* تأثير الانتقال الناعم (Smooth Transition) */
+        body, .main-card, button, input {
+            transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+        }
+    </style>
 </body>
 </html>
